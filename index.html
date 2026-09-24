@@ -5721,21 +5721,29 @@ window.openCustomReportDesigner = function() {
                 </div>
 
                 <div id="saveReportModal" class="fixed inset-0 z-[110] hidden bg-slate-900/60 backdrop-blur-sm p-4 items-center justify-center transition-all duration-200">
-                    <div class="bg-white rounded shadow-2xl w-full max-w-[400px] overflow-hidden flex flex-col">
-                        <div class="bg-[#0f172a] px-5 py-3 text-white font-bold text-[14px]">Save Report</div>
+                    <div class="bg-white rounded-lg shadow-2xl w-full max-w-[440px] overflow-visible flex flex-col">
+                        <div class="bg-[#0f172a] px-5 py-3.5 flex items-center justify-between rounded-t-lg">
+                            <span class="text-white font-bold text-[14px]">Save Report</span>
+                            <button type="button" onclick="window.closeSaveReportModal()" class="text-slate-400 hover:text-white transition-colors"><i class="ph ph-x text-base"></i></button>
+                        </div>
                         <div class="p-5 space-y-4">
+                            <!-- Report Name field (hidden from popup)
                             <div>
                                 <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1.5">Report Name</label>
                                 <input type="text" id="saveReportNameInput" class="w-full border border-slate-300 rounded px-3 py-2 text-[13px] text-slate-800 focus:outline-none focus:border-brand-plum shadow-sm" value="New Custom Report">
                             </div>
+                            -->
+                            <!-- Select Category section (hidden from popup)
                             <div id="save-cat-section" class="transition-opacity duration-150">
                                 <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1.5">Select Category <span class="text-slate-400 font-normal normal-case">(Under My Reports)</span></label>
                                 <select id="saveReportCategorySelect" class="w-full border border-slate-300 rounded px-3 py-2 text-[13px] focus:outline-none focus:border-brand-plum shadow-sm mb-2" style="color:#94a3b8;" onchange="window.toggleNewCategoryInput()">
                                 </select>
                                 <input type="text" id="saveReportNewCategoryInput" placeholder="Enter new category name" class="w-full border border-slate-300 rounded px-3 py-2 text-[13px] text-slate-800 focus:outline-none focus:border-brand-plum shadow-sm hidden">
                             </div>
+                            -->
 
                             <div id="save-view-section" class="transition-opacity duration-150">
+                                <!-- Visibility dropdown (hidden from popup — Role-Based View is used by default)
                                 <div class="mb-3">
                                     <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1.5">Visibility</label>
                                     <select id="saveReportViewSelect" class="w-full border border-slate-300 rounded px-3 py-2 text-[13px] focus:outline-none focus:border-brand-plum shadow-sm" style="color:#94a3b8;" onchange="window.toggleSaveReportViewOptions()">
@@ -5745,27 +5753,47 @@ window.openCustomReportDesigner = function() {
                                         <option value="role-view" style="color:#1e293b;">Role-Based View</option>
                                     </select>
                                 </div>
-                                <div id="save-report-roles-section" class="hidden">
-                                    <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1.5">Select Role(s) <span class="text-red-500">*</span></label>
-                                    <div class="relative mb-2">
-                                        <i class="ph ph-magnifying-glass absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm pointer-events-none"></i>
-                                        <input type="text" id="roleSearchInput" placeholder="Search roles..." oninput="window.filterRoles(this.value)" class="w-full border border-slate-200 rounded px-3 py-1.5 pl-8 text-[12px] text-slate-700 placeholder-slate-400 focus:outline-none focus:border-brand-plum bg-white shadow-sm">
+                                -->
+                                <!-- <input type="hidden" id="saveReportViewSelect" value="role-view"> -->
+                                <div class="mb-4">
+                                    <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1.5">Visibility</label>
+                                    <!-- Visibility dropdown (removed — only Organization Role-Based View is available)
+                                    <div class="relative">
+                                        <select id="saveReportViewSelect" class="w-full appearance-none border border-slate-300 rounded px-3 py-2 pr-9 text-[13px] text-slate-800 bg-white focus:outline-none focus:border-brand-plum shadow-sm cursor-pointer" onchange="window.toggleSaveReportViewOptions()">
+                                            <option value="my-view" style="color:#1e293b;">My View</option>
+                                            <option value="org-view" style="color:#1e293b;">Organization View</option>
+                                            <option value="role-view" style="color:#1e293b;" selected>Organization Role-Based View</option>
+                                        </select>
+                                        <i class="ph ph-caret-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm pointer-events-none"></i>
                                     </div>
-                                    <div id="save-role-list" class="border border-slate-200 rounded-md bg-slate-50 p-3 space-y-2 max-h-[140px] overflow-y-auto">
-                                        <label class="save-role-row flex items-center gap-2 text-[13px] text-slate-700 cursor-pointer" data-role="general manager">
-                                            <input type="checkbox" class="save-role-checkbox w-4 h-4 rounded border-slate-300" value="gm"> General Manager
-                                        </label>
-                                        <label class="save-role-row flex items-center gap-2 text-[13px] text-slate-700 cursor-pointer" data-role="above store manager">
-                                            <input type="checkbox" class="save-role-checkbox w-4 h-4 rounded border-slate-300" value="asm"> Above Store Manager
-                                        </label>
-                                        <label class="save-role-row flex items-center gap-2 text-[13px] text-slate-700 cursor-pointer" data-role="store manager">
-                                            <input type="checkbox" class="save-role-checkbox w-4 h-4 rounded border-slate-300" value="sm"> Store Manager
-                                        </label>
-                                        <label class="save-role-row flex items-center gap-2 text-[13px] text-slate-700 cursor-pointer" data-role="admin">
-                                            <input type="checkbox" class="save-role-checkbox w-4 h-4 rounded border-slate-300" value="admin"> Admin
-                                        </label>
+                                    -->
+                                    <input type="hidden" id="saveReportViewSelect" value="role-view">
+                                    <div class="w-full border border-slate-200 rounded px-3 py-2 text-[13px] text-slate-800 bg-slate-50">Organization Role-Based View</div>
+                                </div>
+                                <div id="save-report-roles-section">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <label class="text-[11px] font-bold text-slate-500 uppercase">Select Role(s) <span class="text-red-500">*</span></label>
+                                        <div class="flex items-center gap-4">
+                                            <button type="button" onclick="window.addAllSaveRoles()" class="text-[11px] font-semibold text-[#3b82f6] hover:text-[#2563eb] underline underline-offset-2 transition-colors">Add All</button>
+                                            <button type="button" onclick="window.removeAllSaveRoles()" class="text-[11px] font-semibold text-[#3b82f6] hover:text-[#2563eb] underline underline-offset-2 transition-colors">Remove All</button>
+                                        </div>
                                     </div>
-                                    <p id="role-no-results" class="hidden text-[12px] text-slate-400 italic text-center py-1">No roles match your search.</p>
+                                    <div id="save-role-dropdown" class="relative">
+                                        <button type="button" id="save-role-trigger" onclick="window.toggleSaveRoleDropdown(event)" class="w-full flex items-center justify-between border border-slate-300 rounded px-3 py-2 text-[13px] text-slate-400 bg-white shadow-sm hover:border-slate-400 focus:outline-none focus:border-brand-plum transition-colors">
+                                            <span>Select Role(s)</span>
+                                            <i id="save-role-caret" class="ph ph-caret-down text-slate-400 text-sm transition-transform duration-150"></i>
+                                        </button>
+                                        <div id="save-role-menu" class="hidden absolute left-0 right-0 top-full mt-1 z-30 bg-white border border-slate-200 rounded-md shadow-lg">
+                                            <div class="relative p-2 border-b border-slate-100">
+                                                <i class="ph ph-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm pointer-events-none"></i>
+                                                <input type="text" id="roleSearchInput" placeholder="Search roles..." oninput="window.filterRoles(this.value)" class="w-full border border-slate-200 rounded px-3 py-1.5 pl-8 text-[12px] text-slate-700 placeholder-slate-400 focus:outline-none focus:border-brand-plum bg-white">
+                                            </div>
+                                            <div id="save-role-options" class="max-h-[160px] overflow-y-auto py-1"></div>
+                                            <p id="role-no-results" class="hidden text-[12px] text-slate-400 italic text-center py-2">No roles match your search.</p>
+                                        </div>
+                                    </div>
+                                    <div id="save-role-selected" class="mt-2 border border-slate-200 rounded-md divide-y divide-slate-100 max-h-[168px] overflow-y-auto"></div>
+                                    <p id="save-role-view-msg" class="hidden flex items-start gap-2 text-[11px] font-medium text-red-700 leading-snug mt-2 bg-red-50 border border-red-200 rounded-md px-2.5 py-2"></p>
                                 </div>
                                 <div id="save-lock-view-section" class="hidden mt-3">
                                     <div class="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-lg px-3 py-2.5">
@@ -5780,8 +5808,8 @@ window.openCustomReportDesigner = function() {
                                 </div>
                             </div>
                         </div>
-                        <div class="px-5 py-4 border-t border-slate-100 flex justify-end gap-3 bg-slate-50 shrink-0">
-                            <button onclick="window.closeSaveReportModal()" class="text-[12px] font-bold text-slate-500 hover:text-slate-800 uppercase tracking-wider transition-colors">Cancel</button>
+                        <div class="px-5 py-3.5 border-t border-slate-100 flex items-center justify-end gap-2.5 bg-slate-50 shrink-0 rounded-b-lg">
+                            <button onclick="window.closeSaveReportModal()" class="border border-slate-300 bg-white text-slate-600 text-[12px] font-bold px-4 py-2 rounded hover:bg-slate-100 hover:text-slate-800 transition-colors uppercase tracking-wider">Cancel</button>
                             <button onclick="window.confirmSaveReport()" class="bg-brand-plum text-white text-[12px] font-bold px-4 py-2 rounded hover:bg-[#631232] transition-colors uppercase tracking-wider shadow-sm">Save Report</button>
                         </div>
                     </div>
@@ -5867,26 +5895,27 @@ window.openCustomReportDesigner = function() {
             if (nameInput) {
                 nameInput.value = window.currentActiveReportName || 'New Custom Report';
             }
-            const selectEl = document.getElementById('saveReportCategorySelect');
-            let optionsHtml = '<option value="" disabled selected style="color:#94a3b8;">Select Report Category</option>';
-            appData['my-reports'].forEach(cat => { optionsHtml += `<option value="${cat.title}" style="color:#1e293b;">${cat.title}</option>`; });
-            optionsHtml += `<option value="--NEW--" style="color:#1e293b;">+ Create New Category</option>`;
-            selectEl.innerHTML = optionsHtml;
-            selectEl.value = '';
-            selectEl.style.color = '#94a3b8';
+            // Select Category (hidden from popup)
+            // const selectEl = document.getElementById('saveReportCategorySelect');
+            // let optionsHtml = '<option value="" disabled selected style="color:#94a3b8;">Select Report Category</option>';
+            // appData['my-reports'].forEach(cat => { optionsHtml += `<option value="${cat.title}" style="color:#1e293b;">${cat.title}</option>`; });
+            // optionsHtml += `<option value="--NEW--" style="color:#1e293b;">+ Create New Category</option>`;
+            // selectEl.innerHTML = optionsHtml;
+            // selectEl.value = '';
+            // selectEl.style.color = '#94a3b8';
             const viewSelEl = document.getElementById('saveReportViewSelect');
-            if (viewSelEl) { viewSelEl.value = ''; viewSelEl.style.color = '#94a3b8'; }
-            const rolesSection = document.getElementById('save-report-roles-section');
-            if (rolesSection) { rolesSection.classList.add('hidden'); }
-            document.querySelectorAll('.save-role-checkbox').forEach(function(cb) { cb.checked = false; });
-            var roleSearch = document.getElementById('roleSearchInput');
-            if (roleSearch) { roleSearch.value = ''; if (typeof window.filterRoles === 'function') window.filterRoles(''); }
+            // if (viewSelEl) { viewSelEl.value = ''; viewSelEl.style.color = '#94a3b8'; }
+            // const rolesSection = document.getElementById('save-report-roles-section');
+            // if (rolesSection) { rolesSection.classList.add('hidden'); }
+            if (viewSelEl) { viewSelEl.value = 'role-view'; }
+            window.toggleSaveReportViewOptions();
+            window.resetSaveRoles();
             // Ensure both sections are fully enabled on open
-            var catSec = document.getElementById('save-cat-section');
-            var viewSec = document.getElementById('save-view-section');
-            if (catSec) { catSec.style.opacity = ''; catSec.style.pointerEvents = ''; }
-            if (viewSec) { viewSec.style.opacity = ''; viewSec.style.pointerEvents = ''; }
-            window.toggleNewCategoryInput();
+            // var catSec = document.getElementById('save-cat-section');
+            // var viewSec = document.getElementById('save-view-section');
+            // if (catSec) { catSec.style.opacity = ''; catSec.style.pointerEvents = ''; }
+            // if (viewSec) { viewSec.style.opacity = ''; viewSec.style.pointerEvents = ''; }
+            // window.toggleNewCategoryInput();
         };
 
         window.closeSaveReportModal = function() {
@@ -5896,46 +5925,164 @@ window.openCustomReportDesigner = function() {
             modal.classList.remove('flex');
         };
 
-        window.toggleNewCategoryInput = function() {
-            const select = document.getElementById('saveReportCategorySelect');
-            const input = document.getElementById('saveReportNewCategoryInput');
-            const viewSection = document.getElementById('save-view-section');
-            const viewSel = document.getElementById('saveReportViewSelect');
-            const rolesSection = document.getElementById('save-report-roles-section');
+        // Select Category (hidden from popup)
+        // window.toggleNewCategoryInput = function() {
+        //     const select = document.getElementById('saveReportCategorySelect');
+        //     const input = document.getElementById('saveReportNewCategoryInput');
+        //     const viewSection = document.getElementById('save-view-section');
+        //     const viewSel = document.getElementById('saveReportViewSelect');
+        //     const rolesSection = document.getElementById('save-report-roles-section');
+        //
+        //     select.style.color = select.value ? '#1e293b' : '#94a3b8';
+        //
+        //     if (select.value) {
+        //         // Category chosen — disable view section
+        //         if (viewSection) { viewSection.style.opacity = '0.35'; viewSection.style.pointerEvents = 'none'; }
+        //         if (viewSel) { viewSel.value = ''; viewSel.style.color = '#94a3b8'; }
+        //         if (rolesSection) { rolesSection.classList.add('hidden'); }
+        //         window.resetSaveRoles();
+        //     } else {
+        //         // Category cleared — re-enable view section
+        //         if (viewSection) { viewSection.style.opacity = ''; viewSection.style.pointerEvents = ''; }
+        //     }
+        //
+        //     if (select.value === '--NEW--') {
+        //         input.classList.remove('hidden');
+        //         input.focus();
+        //     } else {
+        //         input.classList.add('hidden');
+        //     }
+        // };
 
-            select.style.color = select.value ? '#1e293b' : '#94a3b8';
+        // Available roles + number of saved views (other than default) that already exist per role
+        window.saveReportRoles = [
+            { id: 'admin',         name: 'Admin',               views: 0 },
+            { id: 'admin-billing', name: 'Admin With Billing',  views: 1 },
+            { id: 'gm',            name: 'General Manager',     views: 0 },
+            { id: 'asm',           name: 'Above Store Manager', views: 1 },
+            { id: 'sm',            name: 'Store Manager',       views: 1 },
+            { id: 'asst-mgr',      name: 'Assistant Manager',   views: 0 }
+            // { id: 'shift-lead',    name: 'Shift Lead',          views: 0 }
+        ];
+        window.saveSelectedRoles = [];
 
-            if (select.value) {
-                // Category chosen — disable view section
-                if (viewSection) { viewSection.style.opacity = '0.35'; viewSection.style.pointerEvents = 'none'; }
-                if (viewSel) { viewSel.value = ''; viewSel.style.color = '#94a3b8'; }
-                if (rolesSection) { rolesSection.classList.add('hidden'); }
-                document.querySelectorAll('.save-role-checkbox').forEach(function(cb) { cb.checked = false; });
-            } else {
-                // Category cleared — re-enable view section
-                if (viewSection) { viewSection.style.opacity = ''; viewSection.style.pointerEvents = ''; }
-            }
-
-            if (select.value === '--NEW--') {
-                input.classList.remove('hidden');
-                input.focus();
-            } else {
-                input.classList.add('hidden');
-            }
+        window.getRoleViewMessage = function(count) {
+            if (!count) return 'Default view exists';
+            return count + (count === 1 ? ' view exists' : ' views exist') + ' other than default';
         };
 
-        window.filterRoles = function(query) {
-            var q = query.toLowerCase().trim();
-            var rows = document.querySelectorAll('.save-role-row');
-            var anyVisible = false;
-            rows.forEach(function(row) {
-                var match = !q || row.dataset.role.indexOf(q) !== -1;
-                row.style.display = match ? '' : 'none';
-                if (match) anyVisible = true;
-            });
+        window.renderSaveRoles = function() {
+            var optionsEl = document.getElementById('save-role-options');
+            var selectedEl = document.getElementById('save-role-selected');
+            var searchEl = document.getElementById('roleSearchInput');
             var noResults = document.getElementById('role-no-results');
-            if (noResults) noResults.classList.toggle('hidden', anyVisible);
+            if (!optionsEl || !selectedEl) return;
+
+            var q = searchEl ? searchEl.value.toLowerCase().trim() : '';
+            var available = window.saveReportRoles.filter(function(r) {
+                return window.saveSelectedRoles.indexOf(r.id) === -1 && (!q || r.name.toLowerCase().indexOf(q) !== -1);
+            });
+            optionsEl.innerHTML = available.map(function(r) {
+                return '<div onclick="window.addSaveRole(\'' + r.id + '\', event)" class="px-3 py-2 text-[13px] text-slate-700 hover:bg-slate-50 cursor-pointer transition-colors">' + r.name + '</div>';
+            }).join('');
+            if (noResults) {
+                var allAdded = window.saveSelectedRoles.length === window.saveReportRoles.length;
+                noResults.textContent = allAdded && !q ? 'All roles have been added.' : 'No roles match your search.';
+                noResults.classList.toggle('hidden', available.length > 0);
+            }
+
+            var viewMsgEl = document.getElementById('save-role-view-msg');
+            if (!window.saveSelectedRoles.length) {
+                selectedEl.innerHTML = '<p class="text-[12px] text-slate-400 italic text-center py-3">No roles selected</p>';
+                if (viewMsgEl) viewMsgEl.classList.add('hidden');
+                return;
+            }
+            // Single summary message under the role selection (replaced by per-role messages)
+            // if (viewMsgEl) {
+            //     var totalViews = window.saveSelectedRoles.reduce(function(sum, id) {
+            //         var role = window.saveReportRoles.find(function(x) { return x.id === id; });
+            //         return sum + (role ? role.views : 0);
+            //     }, 0);
+            //     viewMsgEl.textContent = window.getRoleViewMessage(totalViews);
+            //     viewMsgEl.classList.remove('hidden');
+            // }
+            // Generic overwrite message shown at the bottom once role(s) are selected
+            if (viewMsgEl) {
+                viewMsgEl.innerHTML = '<i class="ph-fill ph-warning text-amber-500 text-[15px] shrink-0 -mt-px"></i><span>A view already exists for the selected role(s). Saving this report will overwrite the existing view.</span>';
+                viewMsgEl.classList.remove('hidden');
+            }
+            selectedEl.innerHTML = window.saveSelectedRoles.map(function(id) {
+                var r = window.saveReportRoles.find(function(x) { return x.id === id; });
+                return '<div class="flex items-start justify-between gap-2 px-3 py-2">' +
+                           '<div class="flex flex-col min-w-0">' +
+                               '<span class="text-[13px] text-slate-700 font-medium truncate">' + r.name + '</span>' +
+                               // Per-role view message (hidden)
+                               // '<span class="text-[11px] text-slate-400 mt-0.5">' + window.getRoleViewMessage(r.views) + '</span>' +
+                           '</div>' +
+                           '<button type="button" onclick="window.removeSaveRole(\'' + r.id + '\')" class="text-slate-400 hover:text-red-500 transition-colors shrink-0 mt-0.5" title="Remove"><i class="ph ph-x text-sm"></i></button>' +
+                       '</div>';
+            }).join('');
         };
+
+        window.filterRoles = function() { window.renderSaveRoles(); };
+
+        window.addSaveRole = function(id, e) {
+            if (e) e.stopPropagation();
+            if (window.saveSelectedRoles.indexOf(id) === -1) window.saveSelectedRoles.push(id);
+            window.closeSaveRoleDropdown();
+            window.renderSaveRoles();
+        };
+
+        window.removeSaveRole = function(id) {
+            window.saveSelectedRoles = window.saveSelectedRoles.filter(function(x) { return x !== id; });
+            window.renderSaveRoles();
+        };
+
+        window.addAllSaveRoles = function() {
+            window.saveSelectedRoles = window.saveReportRoles.map(function(r) { return r.id; });
+            window.closeSaveRoleDropdown();
+            window.renderSaveRoles();
+        };
+
+        window.removeAllSaveRoles = function() {
+            window.saveSelectedRoles = [];
+            window.renderSaveRoles();
+        };
+
+        window.toggleSaveRoleDropdown = function(e) {
+            if (e) e.stopPropagation();
+            var menu = document.getElementById('save-role-menu');
+            if (!menu) return;
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                document.getElementById('save-role-caret').style.transform = 'rotate(180deg)';
+                var searchEl = document.getElementById('roleSearchInput');
+                if (searchEl) { searchEl.value = ''; searchEl.focus(); }
+                window.renderSaveRoles();
+            } else {
+                window.closeSaveRoleDropdown();
+            }
+        };
+
+        window.closeSaveRoleDropdown = function() {
+            var menu = document.getElementById('save-role-menu');
+            var caret = document.getElementById('save-role-caret');
+            if (menu) menu.classList.add('hidden');
+            if (caret) caret.style.transform = '';
+        };
+
+        window.resetSaveRoles = function() {
+            window.saveSelectedRoles = [];
+            var searchEl = document.getElementById('roleSearchInput');
+            if (searchEl) searchEl.value = '';
+            window.closeSaveRoleDropdown();
+            window.renderSaveRoles();
+        };
+
+        document.addEventListener('click', function(e) {
+            var dd = document.getElementById('save-role-dropdown');
+            if (dd && !dd.contains(e.target)) window.closeSaveRoleDropdown();
+        });
 
         window.toggleSaveReportViewOptions = function() {
             var sel = document.getElementById('saveReportViewSelect');
@@ -5948,10 +6095,8 @@ window.openCustomReportDesigner = function() {
             var showLock = sel.value === 'org-view';
             rolesSection.classList.toggle('hidden', !showRoles);
 
-            if (showRoles) {
-                var searchEl = document.getElementById('roleSearchInput');
-                if (searchEl) { searchEl.value = ''; window.filterRoles(''); }
-            }
+            if (!showRoles) window.resetSaveRoles();
+            else window.renderSaveRoles();
 
             if (lockSection) {
                 lockSection.classList.toggle('hidden', !showLock);
@@ -6014,9 +6159,14 @@ window.openCustomReportDesigner = function() {
         };
 
         window.confirmSaveReport = function() {
-            const name = document.getElementById('saveReportNameInput').value.trim();
-            const selectVal = document.getElementById('saveReportCategorySelect').value;
-            const newVal = document.getElementById('saveReportNewCategoryInput').value.trim();
+            // Report Name field (hidden from popup)
+            // const name = document.getElementById('saveReportNameInput').value.trim();
+            const name = window.currentActiveReportName || 'New Custom Report';
+            // Select Category (hidden from popup)
+            // const selectVal = document.getElementById('saveReportCategorySelect').value;
+            // const newVal = document.getElementById('saveReportNewCategoryInput').value.trim();
+            const selectVal = '';
+            const newVal = '';
             const viewSel = document.getElementById('saveReportViewSelect');
             const viewVal = viewSel ? viewSel.value : '';
 
@@ -6025,7 +6175,8 @@ window.openCustomReportDesigner = function() {
             const hasCategory = !!selectVal;
             const hasView     = !!viewVal;
 
-            if (!hasCategory && !hasView) return alert("Please select a Report Category or a Report View.");
+            // if (!hasCategory && !hasView) return alert("Please select a Report Category or a Report View.");
+            if (!hasView) return alert("Please select a Visibility option.");
 
             const doSave = function() {
                 window.currentActiveReportName = name;
@@ -6058,13 +6209,12 @@ window.openCustomReportDesigner = function() {
             } else {
                 // ── View path ─────────────────────────────────────────────────
                 if (viewVal === 'role-view') {
-                    const checkedRoles = document.querySelectorAll('.save-role-checkbox:checked');
-                    if (!checkedRoles.length) return alert("Please select at least one role to save the report view");
+                    if (!window.saveSelectedRoles.length) return alert("Please select at least one role to save the report view");
                 }
                 const confirmMessages = {
                     'my-view':   'Are you sure you want to save this report view as My View? This view will be available only to you.',
                     'org-view':  'Are you sure you want to save this report view as an Organization View? This view will be available to all users within your organization.',
-                    'role-view': 'Are you sure you want to save this report view as a Role-Based View? This view will be available only to users assigned to the selected role(s).'
+                    'role-view': 'Are you sure you want to save this report view as an Organization Role-Based View? This view will be available only to users assigned to the selected role(s).'
                 };
                 window.showSaveConfirmPopup(confirmMessages[viewVal], doSave);
             }
