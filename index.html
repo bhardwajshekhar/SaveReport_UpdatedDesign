@@ -5956,12 +5956,19 @@ window.openCustomReportDesigner = function() {
 
         // Available roles + number of saved views (other than default) that already exist per role
         window.saveReportRoles = [
-            { id: 'admin',         name: 'Admin',               views: 0 },
-            { id: 'admin-billing', name: 'Admin With Billing',  views: 1 },
-            { id: 'gm',            name: 'General Manager',     views: 0 },
-            { id: 'asm',           name: 'Above Store Manager', views: 1 },
-            { id: 'sm',            name: 'Store Manager',       views: 1 },
-            { id: 'asst-mgr',      name: 'Assistant Manager',   views: 0 }
+            { id: 'owner',                      name: 'Owner',                      views: 0 },
+            { id: 'admin',                      name: 'Admin',                      views: 0 },
+            { id: 'admin-billing',              name: 'Admin With Billing',         views: 0 },
+            { id: 'regional-manager',           name: 'Regional Manager',           views: 0 },
+            { id: 'franchise-admin',            name: 'Franchise Admin',            views: 0 },
+            { id: 'franchise-regional-manager', name: 'Franchise Regional Manager', views: 0 }
+            // Previous role list (replaced)
+            // { id: 'admin',         name: 'Admin',               views: 0 },
+            // { id: 'admin-billing', name: 'Admin With Billing',  views: 1 },
+            // { id: 'gm',            name: 'General Manager',     views: 0 },
+            // { id: 'asm',           name: 'Above Store Manager', views: 1 },
+            // { id: 'sm',            name: 'Store Manager',       views: 1 },
+            // { id: 'asst-mgr',      name: 'Assistant Manager',   views: 0 },
             // { id: 'shift-lead',    name: 'Shift Lead',          views: 0 }
         ];
         window.saveSelectedRoles = [];
